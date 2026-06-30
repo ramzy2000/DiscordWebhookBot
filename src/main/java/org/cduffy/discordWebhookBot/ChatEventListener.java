@@ -6,12 +6,13 @@ import org.bukkit.event.Listener;
 
 public class ChatEventListener implements Listener {
 
-    protected DiscordMessageWebhook chatMessageWebhook = new DiscordMessageWebhook("");
+
+
     @EventHandler
     public void onChatMessageSent(AsyncChatEvent event) {
         String playerName = event.getPlayer().name().toString();
         String message = event.originalMessage().toString();
 
-        chatMessageWebhook.SendWebhook(playerName, message);
+        DiscordWebhookBot.chatMessageWebhook.SendWebhook(playerName, message);
     }
 }

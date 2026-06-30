@@ -16,6 +16,11 @@ public class DiscordMessageWebhook implements IDiscordWebhook {
         this.webhookUrl = webhookUrl;
     }
 
+    public void SetWebhookUrl(String url)
+    {
+        webhookUrl = url;
+    }
+
 
     public String buildPayload(String name, String message)
     {
