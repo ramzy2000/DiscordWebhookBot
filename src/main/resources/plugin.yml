@@ -1,0 +1,6 @@
+name: DiscordWebhookBot
+version: '${version}'
+
+main: org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin
+api-version: '26.2'
+load: STARTUP
