@@ -1,0 +1,6 @@
+name: DiscordWebhookBot
+version: '${version}'
+
+main: org.cduffy.discordWebhookBot.DiscordWebhookBot
+api-version: '26.2'
+load: POSTWORLD
