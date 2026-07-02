@@ -1,9 +1,11 @@
 package org.cduffy.discordWebhookPlugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.cduffy.discordWebhookPlugin.Webhook.DiscordDeathWebhook;
 import org.cduffy.discordWebhookPlugin.Webhook.DiscordMessageWebhook;
@@ -16,7 +18,13 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
     public static DiscordDeathWebhook deathWebhook = new DiscordDeathWebhook("");
 
-    private static DeathListener deathListener = new DeathListener();
+    private static DeathListener deathListener;
+
+    public DiscordWebhookPlugin()
+    {
+        deathListener = new DeathListener(this);
+    }
+
 
     public static Logger logger;
     @Override
@@ -33,12 +41,14 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
     // Player `/say`
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
-        String msg = event.getMessage().toLowerCase();
-        if (msg.startsWith("/say ")) {
-            String name = event.getPlayer().getName();
-            String message = event.getMessage().substring(5);
-            chatMessageWebhook.SendWebhook(Util.buildMessagePayload(name, message));
-        }
+        Bukkit.getScheduler().runTask(this, () -> {
+            String msg = event.getMessage().toLowerCase();
+            if (msg.startsWith("/say ")) {
+                String name = event.getPlayer().getName();
+                String message = event.getMessage().substring(5);
+                chatMessageWebhook.SendWebhook(Util.buildMessagePayload(name, message));
+            }
+        });
     }
 
 
