@@ -41,7 +41,7 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
     }
 
     public void loadConfig() {
-        chatMessageWebhook.SetWebhookUrl(getConfig().getString("discord.webhook-url"));
+        chatMessageWebhook.SetWebhookUrl(getConfig().getString("chat-webhook-url"));
     }
 
     @Override
