@@ -39,11 +39,12 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event)
     {
-
+        String playerName = event.getPlayer().getName();
+        String deathMessage = event.deathMessage().toString();
+        deathWebhook.SendWebhook(Util.buildDeathPayload(playerName, deathMessage));
     }
 
     public void loadConfig() {
-
         chatMessageWebhook.SetWebhookUrl(getConfig().getString("chat-webhook-url"));
         deathWebhook.SetWebhookUrl(getConfig().getString("death-webhook-url"));
     }

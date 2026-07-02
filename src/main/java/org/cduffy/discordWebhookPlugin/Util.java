@@ -13,4 +13,16 @@ public class Util
 
         return String.format(jsonPayload, name, message);
     }
+
+    public static String buildDeathPayload(String name, String deathMessage)
+    {
+        String jsonPayload = """
+            {
+                "content": "%s: %s",
+                "username": "Minecraft Server"
+            }
+            """;
+
+        return String.format(jsonPayload, name, deathMessage);
+    }
 }
