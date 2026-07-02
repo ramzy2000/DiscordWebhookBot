@@ -6,21 +6,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 
-public class DiscordMessageWebhook implements IDiscordWebhook {
-    protected String webhookUrl;
-
-    protected static HttpClient client = HttpClient.newHttpClient();
-
+public class DiscordMessageWebhook extends DiscordWebhook {
     public DiscordMessageWebhook(String webhookUrl)
     {
-        this.webhookUrl = webhookUrl;
+        super(webhookUrl);
     }
-
-    public void SetWebhookUrl(String url)
-    {
-        webhookUrl = url;
-    }
-
 
     public String buildPayload(String name, String message)
     {
@@ -31,8 +21,7 @@ public class DiscordMessageWebhook implements IDiscordWebhook {
             }
             """;
 
-        jsonPayload = String.format(jsonPayload, name, message);
-        return  jsonPayload;
+        return String.format(jsonPayload, name, message);
     }
 
 
