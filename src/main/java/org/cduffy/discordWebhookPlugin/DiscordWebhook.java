@@ -18,7 +18,7 @@ public class DiscordWebhook implements IDiscordWebhook {
 
     public void SetWebhookUrl(String url)
     {
-        webhookUrl = url;
+        this.webhookUrl = url;
     }
 
     public void SendWebhook(String jsonPayload)

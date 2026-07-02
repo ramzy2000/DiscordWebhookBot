@@ -14,15 +14,15 @@ public class Util
         return String.format(jsonPayload, name, message);
     }
 
-    public static String buildDeathPayload(String name, String deathMessage)
+    public static String buildDeathPayload(String deathMessage)
     {
         String jsonPayload = """
             {
-                "content": "%s: %s",
+                "content": "%s",
                 "username": "Minecraft Server"
             }
             """;
 
-        return String.format(jsonPayload, name, deathMessage);
+        return String.format(jsonPayload, deathMessage);
     }
 }

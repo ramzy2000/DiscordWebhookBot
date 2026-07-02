@@ -14,6 +14,8 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
     public static DiscordDeathWebhook deathWebhook = new DiscordDeathWebhook("");
 
+    private static DeathListener deathListener = new DeathListener();
+
     public static Logger logger;
     @Override
     public void onEnable() {
@@ -23,6 +25,7 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
         DiscordWebhookPlugin.logger.warning("Loading plugin");
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(deathListener, this);
     }
 
     // Player `/say`
@@ -36,17 +39,10 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event)
-    {
-        String playerName = event.getPlayer().getName();
-        String deathMessage = event.deathMessage().toString();
-        deathWebhook.SendWebhook(Util.buildDeathPayload(playerName, deathMessage));
-    }
 
     public void loadConfig() {
-        chatMessageWebhook.SetWebhookUrl(getConfig().getString("chat-webhook-url"));
-        deathWebhook.SetWebhookUrl(getConfig().getString("death-webhook-url"));
+        chatMessageWebhook.SetWebhookUrl(getConfig().getString("discord.chat-webhook-url"));
+        deathWebhook.SetWebhookUrl(getConfig().getString("discord.death-webhook-url"));
     }
 
     @Override
