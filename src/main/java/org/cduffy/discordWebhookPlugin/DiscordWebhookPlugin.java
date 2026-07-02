@@ -2,6 +2,7 @@ package org.cduffy.discordWebhookPlugin;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +11,8 @@ import java.util.logging.Logger;
 public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
     public static DiscordMessageWebhook chatMessageWebhook = new DiscordMessageWebhook("");
+
+    public static DiscordDeathWebhook deathWebhook = new DiscordDeathWebhook("");
 
     public static Logger logger;
     @Override
@@ -33,9 +36,16 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
         }
     }
 
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event)
+    {
+
+    }
+
     public void loadConfig() {
 
         chatMessageWebhook.SetWebhookUrl(getConfig().getString("chat-webhook-url"));
+        deathWebhook.SetWebhookUrl(getConfig().getString("death-webhook-url"));
     }
 
     @Override
