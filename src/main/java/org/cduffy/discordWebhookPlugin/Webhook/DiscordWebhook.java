@@ -1,4 +1,6 @@
-package org.cduffy.discordWebhookPlugin;
+package org.cduffy.discordWebhookPlugin.Webhook;
+
+import org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin;
 
 import java.net.URI;
 import java.net.http.HttpClient;

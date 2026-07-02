@@ -5,6 +5,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.cduffy.discordWebhookPlugin.Webhook.DiscordDeathWebhook;
 
 public class DeathListener implements Listener
 {
