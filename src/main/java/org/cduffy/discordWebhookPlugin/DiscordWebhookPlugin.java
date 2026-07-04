@@ -54,7 +54,8 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
     public void loadConfig() {
         chatMessageWebhook.SetWebhookUrl(getConfig().getString("discord.chat-webhook-url"));
-        deathWebhook.SetWebhookUrl(getConfig().getString("discord.death-webhook-url"));
+        deathWebhook.SetWebhookUrl(getConfig().getString("discord.death.death-webhook-url"));
+        deathWebhook.SetImgUrl(getConfig().getString("discord.death.img-url"));
     }
 
     @Override
