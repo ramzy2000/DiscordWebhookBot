@@ -61,7 +61,15 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
         boolean enableImages = getConfig().getBoolean("discord.death.enable-images");
         deathWebhook.EnableImgs(enableImages);
 
-        registerDamageCause(EntityDamageEvent.DamageCause.DROWNING, "discord.death.img-urls.drowning");
+
+        registerDamageCause(EntityDamageEvent.DamageCause.DROWNING, getDeathImgUrl("drowning"));
+        registerDamageCause(EntityDamageEvent.DamageCause.LAVA, getDeathImgUrl("lava"));
+    }
+
+    public String getDeathImgUrl(String name)
+    {
+        String deathConfigPrefix = "discord.death.img-urls.";
+        return deathConfigPrefix+name;
     }
 
     public void registerDamageCause(EntityDamageEvent.DamageCause damageCause, String configPath)
