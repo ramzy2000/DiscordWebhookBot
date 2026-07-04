@@ -1,2 +1,3 @@
 discord:
-  webhook-url: "https://discord.com"
+  chat-webhook-url: "https://discord.com"
+  death-webhook-url: "https://discord.com"
