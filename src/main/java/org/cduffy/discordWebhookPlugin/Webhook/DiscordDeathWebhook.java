@@ -1,10 +1,18 @@
 package org.cduffy.discordWebhookPlugin.Webhook;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DiscordDeathWebhook extends DiscordWebhook {
 
     protected String imgUrl;
+
+    protected boolean imgEnabled = false;
+
+    public  static Map<EntityDamageEvent.DamageCause, String> damageWebhookMap = new HashMap<>();
     public DiscordDeathWebhook(String webhook)
     {
         super(webhook);
@@ -46,9 +54,40 @@ public class DiscordDeathWebhook extends DiscordWebhook {
             """;
 
         String name = player.getName();
+        String imgUrl = "";
+        try {
+            EntityDamageEvent.DamageCause damageCause = player.getLastDamageCause().getCause();
+            if(damageWebhookMap.containsKey(damageCause))
+            {
+                imgUrl = damageWebhookMap.get(damageCause);
+                if(imgUrl.isEmpty())
+                {
+                    return String.format(jsonPayload, deathMessage, this.imgUrl, name);
+                }
+            }
+            else
+            {
+                return String.format(jsonPayload, deathMessage, this.imgUrl, name);
+            }
+        }
+        catch (Exception e)
+        {
+            return String.format(jsonPayload, deathMessage, this.imgUrl, name);
+        }
 
-        return String.format(jsonPayload, deathMessage, this.imgUrl, name);
+        return String.format(jsonPayload, deathMessage, imgUrl, name);
     }
+
+    public void EnableImgs(boolean imgEnabled)
+    {
+        this.imgEnabled = imgEnabled;
+    }
+
+    public boolean ImagesEnabled()
+    {
+        return this.imgEnabled;
+    }
+
 
     public String GetImgUrl()
     {

@@ -3,6 +3,7 @@ package org.cduffy.discordWebhookPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
@@ -10,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.cduffy.discordWebhookPlugin.Webhook.DiscordDeathWebhook;
 import org.cduffy.discordWebhookPlugin.Webhook.DiscordMessageWebhook;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
@@ -55,7 +57,10 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
     public void loadConfig() {
         chatMessageWebhook.SetWebhookUrl(getConfig().getString("discord.chat-webhook-url"));
         deathWebhook.SetWebhookUrl(getConfig().getString("discord.death.death-webhook-url"));
-        deathWebhook.SetImgUrl(getConfig().getString("discord.death.img-url"));
+        deathWebhook.SetImgUrl(getConfig().getString("discord.death.img-urls.default"));
+        boolean enableImages = getConfig().getBoolean("discord.death.enable-images");
+        deathWebhook.EnableImgs(enableImages);
+        DiscordDeathWebhook.damageWebhookMap.put(EntityDamageEvent.DamageCause.DROWNING, getConfig().getString("discord.death.img-urls.drowning"));
     }
 
     @Override

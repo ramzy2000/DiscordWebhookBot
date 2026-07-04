@@ -2,4 +2,7 @@ discord:
   chat-webhook-url: "https://discord.com"
   death:
     death-webhook-url: "https://discord.com"
-    img-url: ""
+    enable-images: false
+    img-urls:
+      default: ""
+      drowning: ""
