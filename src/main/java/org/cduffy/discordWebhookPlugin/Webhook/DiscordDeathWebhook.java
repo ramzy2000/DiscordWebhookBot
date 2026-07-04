@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 
 public class DiscordDeathWebhook extends DiscordWebhook {
 
-    public String imgUrl;
+    protected String imgUrl;
     public DiscordDeathWebhook(String webhook)
     {
         super(webhook);
@@ -49,4 +49,12 @@ public class DiscordDeathWebhook extends DiscordWebhook {
 
         return String.format(jsonPayload, deathMessage, this.imgUrl, name);
     }
+
+    public String GetImgUrl()
+    {
+        return this.imgUrl;
+    }
+
 }
+
+
