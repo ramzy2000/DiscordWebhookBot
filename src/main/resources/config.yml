@@ -7,3 +7,5 @@ discord:
       default: ""
       drowning: ""
       lava: ""
+      explosion: ""
+      fall: ""

@@ -11,6 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.cduffy.discordWebhookPlugin.Webhook.DiscordDeathWebhook;
 import org.cduffy.discordWebhookPlugin.Webhook.DiscordMessageWebhook;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -64,6 +66,8 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
         registerDamageCause(EntityDamageEvent.DamageCause.DROWNING, getDeathImgUrl("drowning"));
         registerDamageCause(EntityDamageEvent.DamageCause.LAVA, getDeathImgUrl("lava"));
+        registerDamageCause(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, getDeathImgUrl("explosion"));
+        registerDamageCause(EntityDamageEvent.DamageCause.FALL, getDeathImgUrl("fall"));
     }
 
     public String getDeathImgUrl(String name)
@@ -74,7 +78,13 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
     public void registerDamageCause(EntityDamageEvent.DamageCause damageCause, String configPath)
     {
-        DiscordDeathWebhook.damageWebhookMap.put(damageCause, getConfig().getString(configPath));
+        String value = getConfig().getString(configPath);
+        if(value == null)
+        {
+            return;
+        }
+
+        DiscordDeathWebhook.damageWebhookMap.put(damageCause, value);
     }
 
     @Override
