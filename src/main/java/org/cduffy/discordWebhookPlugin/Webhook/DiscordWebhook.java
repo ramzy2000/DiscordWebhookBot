@@ -1,4 +1,6 @@
-package org.cduffy.discordWebhookPlugin;
+package org.cduffy.discordWebhookPlugin.Webhook;
+
+import org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -6,44 +8,28 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 
-public class DiscordMessageWebhook implements IDiscordWebhook {
+public class DiscordWebhook implements IDiscordWebhook {
     protected String webhookUrl;
 
     protected static HttpClient client = HttpClient.newHttpClient();
 
-    public DiscordMessageWebhook(String webhookUrl)
+    public DiscordWebhook(String webhookUrl)
     {
         this.webhookUrl = webhookUrl;
     }
 
     public void SetWebhookUrl(String url)
     {
-        webhookUrl = url;
+        this.webhookUrl = url;
     }
 
-
-    public String buildPayload(String name, String message)
+    public void SendWebhook(String jsonPayload)
     {
-        String jsonPayload = """
-            {
-                "content": "%s: %s",
-                "username": "Minecraft Server"
-            }
-            """;
-
-        jsonPayload = String.format(jsonPayload, name, message);
-        return  jsonPayload;
-    }
-
-
-    public void SendWebhook(String name, String message)
-    {
-        if(Objects.equals(name, "") && Objects.equals(message, ""))
+        if(Objects.equals(jsonPayload, ""))
         {
             return;
         }
 
-        String jsonPayload = buildPayload(name, message);
 
         // 3. Build and send the HTTP POST request
         client = HttpClient.newHttpClient();
