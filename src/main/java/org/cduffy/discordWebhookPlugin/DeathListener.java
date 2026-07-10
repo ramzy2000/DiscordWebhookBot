@@ -2,16 +2,12 @@ package org.cduffy.discordWebhookPlugin;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.cduffy.discordWebhookPlugin.Webhook.DiscordDeathWebhook;
+import org.cduffy.discordWebhookPlugin.Webhook.IWebhook;
 
 public class DeathListener implements Listener
 {
@@ -27,12 +23,11 @@ public class DeathListener implements Listener
         Player player = event.getPlayer();
         Component deathMessageComponent = event.deathMessage();
         String deathMessage = PlainTextComponentSerializer.plainText().serialize(deathMessageComponent);
-        DiscordDeathWebhook webhook = DiscordWebhookPlugin.deathWebhook;
-        if(webhook.GetImgUrl().isEmpty() || !webhook.ImagesEnabled()) {
-            webhook.SendWebhook(Util.buildDeathPayload(deathMessage));
-        }
-        else {
-            webhook.SendWebhook(webhook.buildDeathPayload(player, deathMessage));
+        EntityDamageEvent.DamageCause cause = event.getEntity().getLastDamageCause().getCause();
+        IWebhook webhook = DiscordWebhookPlugin.webhookFactory.CreateDeathWebhook(cause);
+
+        if(webhook != null) {
+            webhook.SendMessage(deathMessage);
         }
     }
 }
