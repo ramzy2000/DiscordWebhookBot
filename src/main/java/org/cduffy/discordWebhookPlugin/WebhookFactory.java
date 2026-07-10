@@ -6,12 +6,14 @@ import org.cduffy.discordWebhookPlugin.Webhook.*;
 public class WebhookFactory {
     protected DrownWebhook drownWebhook;
     protected LavaDeathWebhook lavaDeathWebhook;
-    protected DefaultMessageWebhook defaultMessageWebhook;
+    protected  DefaultDeathWebhook defaultDeathWebhook;
+    public DefaultMessageWebhook defaultMessageWebhook;
 
     public WebhookFactory() {
         drownWebhook = new DrownWebhook();
         lavaDeathWebhook = new LavaDeathWebhook();
         defaultMessageWebhook = new DefaultMessageWebhook();
+        defaultDeathWebhook = new DefaultDeathWebhook();
     }
 
     public IWebhook CreateDeathWebhook(EntityDamageEvent.DamageCause damageCause) {
@@ -21,7 +23,7 @@ public class WebhookFactory {
             case EntityDamageEvent.DamageCause.LAVA:
                 return lavaDeathWebhook;
             default:
-                return defaultMessageWebhook;
+                return defaultDeathWebhook;
         }
     }
 }

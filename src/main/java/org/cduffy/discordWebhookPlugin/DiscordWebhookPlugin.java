@@ -28,7 +28,6 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         saveDefaultConfig(); // Generates config.yml if it doesn't exist
         loadConfig();
-        fileConfiguration = getConfig();
         DiscordWebhookPlugin.logger = getLogger();
         DiscordWebhookPlugin.logger.warning("Loading plugin");
 
@@ -53,7 +52,7 @@ public final class DiscordWebhookPlugin extends JavaPlugin implements Listener {
 
 
     public void loadConfig() {
-        // new implimentation
+        fileConfiguration = getConfig();
         // load webhook urls
         DeathWebhook.SetWebhookUrl(fileConfiguration.getString("discord.death.death-webhook-url"));
         DefaultMessageWebhook.SetUrl(fileConfiguration.getString("discord.chat-webhook-url"));
