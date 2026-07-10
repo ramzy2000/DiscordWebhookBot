@@ -4,10 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.cduffy.discordWebhookPlugin.Webhook.*;
+import org.cduffy.discordWebhookPlugin.Listener.DeathListener;
+import org.cduffy.discordWebhookPlugin.Webhook.Death.DeathWebhook;
+import org.cduffy.discordWebhookPlugin.Webhook.Message.DefaultMessageWebhook;
+import org.cduffy.discordWebhookPlugin.Webhook.WebhookFactory;
 
 import java.util.logging.Logger;
 

@@ -1,12 +1,10 @@
-package org.cduffy.discordWebhookPlugin.Webhook;
+package org.cduffy.discordWebhookPlugin.Webhook.Death;
 
 import org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin;
 import org.cduffy.discordWebhookPlugin.Util;
+import org.cduffy.discordWebhookPlugin.Webhook.IWebhook;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-
-public class DeathWebhook implements IWebhook{
+public class DeathWebhook implements IWebhook {
     protected static String url = "";
 
     protected String imgUrl = "";

@@ -1,4 +1,4 @@
-package org.cduffy.discordWebhookPlugin;
+package org.cduffy.discordWebhookPlugin.Listener;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin;
 import org.cduffy.discordWebhookPlugin.Webhook.IWebhook;
 
 public class DeathListener implements Listener

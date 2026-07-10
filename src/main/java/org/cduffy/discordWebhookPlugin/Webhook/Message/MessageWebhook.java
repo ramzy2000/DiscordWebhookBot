@@ -1,7 +1,7 @@
-package org.cduffy.discordWebhookPlugin.Webhook;
+package org.cduffy.discordWebhookPlugin.Webhook.Message;
 
-import org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin;
 import org.cduffy.discordWebhookPlugin.Util;
+import org.cduffy.discordWebhookPlugin.Webhook.IWebhook;
 
 public class MessageWebhook implements IWebhook {
     protected static String url;

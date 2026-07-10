@@ -1,7 +1,6 @@
-package org.cduffy.discordWebhookPlugin.Webhook;
+package org.cduffy.discordWebhookPlugin.Webhook.Message;
 
 import org.cduffy.discordWebhookPlugin.DiscordWebhookPlugin;
-import org.cduffy.discordWebhookPlugin.Util;
 
 public class DefaultMessageWebhook extends MessageWebhook {
     public  DefaultMessageWebhook() {
